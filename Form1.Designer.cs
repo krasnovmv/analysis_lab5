@@ -33,6 +33,7 @@
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.функцииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.создатьПапкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DirBtn = new System.Windows.Forms.Button();
             this.WriteBtnOpen = new System.Windows.Forms.Button();
             this.WriteBtnClose = new System.Windows.Forms.Button();
@@ -43,12 +44,13 @@
             this.SearchInputLabel = new System.Windows.Forms.Label();
             this.SearchInput = new System.Windows.Forms.TextBox();
             this.PositionInputLabel = new System.Windows.Forms.Label();
-            this.PositionLabel = new System.Windows.Forms.TextBox();
+            this.PositionInput = new System.Windows.Forms.TextBox();
             this.WriteBlock = new System.Windows.Forms.Button();
             this.SearchBtn = new System.Windows.Forms.Button();
             this.ReadBtnClose = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,9 +90,18 @@
             // 
             // функцииToolStripMenuItem
             // 
+            this.функцииToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.создатьПапкуToolStripMenuItem});
             this.функцииToolStripMenuItem.Name = "функцииToolStripMenuItem";
             this.функцииToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
             this.функцииToolStripMenuItem.Text = "Функции";
+            // 
+            // создатьПапкуToolStripMenuItem
+            // 
+            this.создатьПапкуToolStripMenuItem.Name = "создатьПапкуToolStripMenuItem";
+            this.создатьПапкуToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.создатьПапкуToolStripMenuItem.Text = "Создать папку";
+            this.создатьПапкуToolStripMenuItem.Click += new System.EventHandler(this.создатьПапкуToolStripMenuItem_Click);
             // 
             // DirBtn
             // 
@@ -100,6 +111,7 @@
             this.DirBtn.TabIndex = 2;
             this.DirBtn.Text = "Папка";
             this.DirBtn.UseVisualStyleBackColor = true;
+            this.DirBtn.Click += new System.EventHandler(this.DirBtn_Click);
             // 
             // WriteBtnOpen
             // 
@@ -109,6 +121,7 @@
             this.WriteBtnOpen.TabIndex = 3;
             this.WriteBtnOpen.Text = "Открыть для записи";
             this.WriteBtnOpen.UseVisualStyleBackColor = true;
+            this.WriteBtnOpen.Click += new System.EventHandler(this.WriteBtnOpen_Click);
             // 
             // WriteBtnClose
             // 
@@ -118,6 +131,7 @@
             this.WriteBtnClose.TabIndex = 4;
             this.WriteBtnClose.Text = "Закрыть для записи";
             this.WriteBtnClose.UseVisualStyleBackColor = true;
+            this.WriteBtnClose.Click += new System.EventHandler(this.WriteBtnClose_Click);
             // 
             // ReadBtnOpen
             // 
@@ -127,6 +141,7 @@
             this.ReadBtnOpen.TabIndex = 5;
             this.ReadBtnOpen.Text = "Открыть для чтения";
             this.ReadBtnOpen.UseVisualStyleBackColor = true;
+            this.ReadBtnOpen.Click += new System.EventHandler(this.ReadBtnOpen_Click);
             // 
             // ReadBtnLine
             // 
@@ -136,6 +151,7 @@
             this.ReadBtnLine.TabIndex = 6;
             this.ReadBtnLine.Text = "Чтение строки";
             this.ReadBtnLine.UseVisualStyleBackColor = true;
+            this.ReadBtnLine.Click += new System.EventHandler(this.ReadBtnLine_Click);
             // 
             // ReadBlock
             // 
@@ -145,6 +161,7 @@
             this.ReadBlock.TabIndex = 7;
             this.ReadBlock.Text = "Чтение блока";
             this.ReadBlock.UseVisualStyleBackColor = true;
+            this.ReadBlock.Click += new System.EventHandler(this.ReadBlock_Click);
             // 
             // WriteBtnLine
             // 
@@ -154,6 +171,7 @@
             this.WriteBtnLine.TabIndex = 8;
             this.WriteBtnLine.Text = "Запись строки";
             this.WriteBtnLine.UseVisualStyleBackColor = true;
+            this.WriteBtnLine.Click += new System.EventHandler(this.WriteBtnLine_Click);
             // 
             // SearchInputLabel
             // 
@@ -180,12 +198,12 @@
             this.PositionInputLabel.TabIndex = 11;
             this.PositionInputLabel.Text = "Позиция";
             // 
-            // PositionLabel
+            // PositionInput
             // 
-            this.PositionLabel.Location = new System.Drawing.Point(231, 161);
-            this.PositionLabel.Name = "PositionLabel";
-            this.PositionLabel.Size = new System.Drawing.Size(121, 20);
-            this.PositionLabel.TabIndex = 13;
+            this.PositionInput.Location = new System.Drawing.Point(231, 161);
+            this.PositionInput.Name = "PositionInput";
+            this.PositionInput.Size = new System.Drawing.Size(121, 20);
+            this.PositionInput.TabIndex = 13;
             // 
             // WriteBlock
             // 
@@ -195,6 +213,7 @@
             this.WriteBlock.TabIndex = 14;
             this.WriteBlock.Text = "Запись блока";
             this.WriteBlock.UseVisualStyleBackColor = true;
+            this.WriteBlock.Click += new System.EventHandler(this.WriteBlock_Click);
             // 
             // SearchBtn
             // 
@@ -204,6 +223,7 @@
             this.SearchBtn.TabIndex = 15;
             this.SearchBtn.Text = "Найти";
             this.SearchBtn.UseVisualStyleBackColor = true;
+            this.SearchBtn.Click += new System.EventHandler(this.SearchBtn_Click);
             // 
             // ReadBtnClose
             // 
@@ -213,10 +233,11 @@
             this.ReadBtnClose.TabIndex = 16;
             this.ReadBtnClose.Text = "Закрыть для чтения";
             this.ReadBtnClose.UseVisualStyleBackColor = true;
+            this.ReadBtnClose.Click += new System.EventHandler(this.ReadBtnClose_Click);
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -226,7 +247,7 @@
             this.Controls.Add(this.ReadBtnClose);
             this.Controls.Add(this.SearchBtn);
             this.Controls.Add(this.WriteBlock);
-            this.Controls.Add(this.PositionLabel);
+            this.Controls.Add(this.PositionInput);
             this.Controls.Add(this.PositionInputLabel);
             this.Controls.Add(this.SearchInput);
             this.Controls.Add(this.SearchInputLabel);
@@ -251,11 +272,15 @@
 
         #endregion
 
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem функцииToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem создатьПапкуToolStripMenuItem;
         private System.Windows.Forms.Button DirBtn;
         private System.Windows.Forms.Button WriteBtnOpen;
         private System.Windows.Forms.Button WriteBtnClose;
@@ -266,12 +291,10 @@
         private System.Windows.Forms.Label SearchInputLabel;
         private System.Windows.Forms.TextBox SearchInput;
         private System.Windows.Forms.Label PositionInputLabel;
-        private System.Windows.Forms.TextBox PositionLabel;
+        private System.Windows.Forms.TextBox PositionInput;
         private System.Windows.Forms.Button WriteBlock;
         private System.Windows.Forms.Button SearchBtn;
         private System.Windows.Forms.Button ReadBtnClose;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 
